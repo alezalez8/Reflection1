@@ -42,7 +42,6 @@ public class ServiceSaver {
     public static Object Deserializer(Object o, File file) throws IOException, NoSuchFieldException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
 
         String data = loadDataFromFile(file);
-        System.out.println(data);
         String[] lines = data.split(";");
         Class<?> clazz = o.getClass();
         Object o1 = clazz.getDeclaredConstructor().newInstance();
@@ -87,7 +86,6 @@ public class ServiceSaver {
                 if (temp == null) {
                     break;
                 }
-               // result += temp + System.lineSeparator();
                 result += temp + ";";
             }
             return result.substring(0, result.length() - 1);

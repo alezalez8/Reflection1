@@ -10,10 +10,15 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) throws IllegalAccessException, IOException, NoSuchFieldException, InstantiationException, InvocationTargetException, NoSuchMethodException {
-        Person person = new Person("Aleks", 49);
+        Person person = new Person("Aleks", 49, 10L);
         person.setPassword("qazwsx");
+
         System.out.println("Before serial: \n\r" + person);
-        File file = new File("D:\\backup.bin");
+        System.out.println("=====================================");
+
+        String pathToFile = "D:\\backup.bin";
+        File file = new File(pathToFile);
+
         ServiceSaver.Serializer(person, file);
         person = (Person) ServiceSaver.Deserializer(person, file);
         System.out.println("After deserial: \n\r" + person);
@@ -29,15 +34,17 @@ class Person {
     private int age;
 
     private String password;
-    @Save
-    private long id = 10L;
+
+    //@Save
+    private long id;
 
     public Person() {
     }
 
-    public Person(String name, int age) {
+    public Person(String name, int age, long id) {
         this.name = name;
         this.age = age;
+        this.id = id;
     }
 
     public String getName() {
